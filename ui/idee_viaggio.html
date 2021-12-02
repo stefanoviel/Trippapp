@@ -30,7 +30,6 @@
           </div>
           <div class="col">
             
-            
             <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 Aggiungi
             </button>
@@ -41,27 +40,30 @@
       </div>
       
       <div class="collapse " id="collapseExample">
-        <div class="container" style="border-bottom:2px solid black; ">
-            
-            <div class="row mt-2">
+        <div class="container">
+          <form action="http://localhost:3000/api/idee" method="POST">
+            <div class="form-group">
                 <label for="partenza" class="form-label">Partenza</label>
-            </div>
-            <div class = "row ">
-                <input class="form-control" id="partenza" placeholder=" Milano">    
+            
+                <input class="form-control" id="partenza" placeholder=" Milano", name="partenza">    
             </div>
 
-            <div class="row mt-2">
+            <div class="form-group">
                 <label for="destinazione" class="form-label">Destinazione</label>
+                <input class="form-control" id="destinazione" placeholder=" Parigi" name="destinazione">    
             </div>
-            <div class = "row">
-                <input class="form-control" id="destinazione" placeholder=" Parigi">    
-            </div>
+            
+            <button type="submit" class="btn btn-success">
+                  Submit
+            </button>
 
+            <!--
             <div class="mt-4">
                 <p>Alloggio</p>
             </div>
             
-            <div class="form-check mt-1">
+            
+             <div class="form-check mt-1">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                   Affittacamere
@@ -84,15 +86,12 @@
                 <label class="form-check-label" for="flexCheckChecked">
                   B&B
                 </label>
-              </div>
+              </div> -->
              
-              <div class="form-group">
-                <button class="btn btn-success btn-lg float-right"
-                        type="submit">
-                    Submit
-                </button>
-            </div>
+              
+              
             
+          </form>
         </div>
       </div>
 
