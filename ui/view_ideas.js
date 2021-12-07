@@ -1,13 +1,26 @@
-var t = document.createElement("card");
-var request = new XMLHttpRequest(); 
-request.open('GET', 'https://localhost:3000/api/idee', true); 
-request.onload = function (){
-    var data = JSON.parse(this.response); 
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
+var request = new XMLHttpRequest(); 
+request.open('GET', 'https://localhost:3000/api/idee', false); 
+request.onreadystatechange = function (){
+    console.log("readyState = " + this.readyState + ", status = " + this.status);
+    
+    try{
+        console.log(this.response); 
+        var data = JSON.parse(this.response); 
+    }
+    catch(errror){
+        console.error("Not a JSON response")
+    }
 
     console.log("ok"); 
 }
+
 request.send()
+
+
+
+
 
 // ask
 // come faccio a fare una get dalle idee di viaggio x
