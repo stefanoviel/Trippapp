@@ -20,7 +20,7 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     
-    <div class="container ">
+    <div class="container " id = "new">
         <div class="row align-items-center">
             
           <div class="col-8">
@@ -30,7 +30,7 @@
           </div>
           <div class="col">
             
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="aggiungi">
                 Aggiungi
             </button>
               
@@ -53,9 +53,10 @@
                 <input class="form-control" id="destinazione" placeholder=" Parigi" name="destinazione">    
             </div>
             
-            <button type="submit" class="btn btn-success">
-                  Submit
-            </button>
+            <button type="submit" class="btn btn-success"  data-bs-toggle="collapse" data-bs-target="#collapseExample"  >
+              Submit
+          </button>
+            
 
             <!--
             <div class="mt-4">
@@ -94,6 +95,26 @@
           </form>
         </div>
       </div>
+
+      <script>
+        var tag = document.createElement("p");
+        var text = document.createTextNode("paragraph");
+        tag.appendChild(text);
+        var element = document.getElementById("new");
+        element.appendChild(tag);
+        
+
+        var t = document.createElement("card");
+        var request = new XMLHttpRequest(); 
+        request.open('GET', 'https://localhost:3000/api/idee', true); 
+        request.onload = function (){
+          var data = JSON.parse(this.response); 
+          console.log("ok"); 
+        }
+        request.send(); 
+     </script>  
+
+      
 
       
       

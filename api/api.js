@@ -1,6 +1,7 @@
 const express = require('express');
 var bodyParser = require('body-parser')
 const app = express();
+const path = require('path');
 
 var fs = require('fs');
 
@@ -31,7 +32,6 @@ app.post('/api/idee', urlencodedParser, (req, res) => {
     let newIdea = {
         "partenza": req.body['partenza'],
         "destinazione": req.body['destinazione'],
-        
     };
 
     //aggiunta nuovo elemento
@@ -44,8 +44,8 @@ app.post('/api/idee', urlencodedParser, (req, res) => {
         if (err) throw err;
     });
     
-    
-    res.json("Tutto ok");
+
+    res.status(204).send();
 });
 
 app.listen(3000);
