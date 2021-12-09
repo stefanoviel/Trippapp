@@ -3,6 +3,11 @@ var bodyParser = require('body-parser')
 const app = express();
 const path = require('path');
 
+//CORS module added
+
+var cors = require('cors')
+app.use(cors())
+
 var fs = require('fs');
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -12,7 +17,7 @@ const appDir = dirname(require.main.filename);
 
 
 app.get('/api/idee', (req, res) => {
-
+    console.log("GET IDEE API CALLED");
     var data = fs.readFileSync(appDir + '/idee.json');
     var myObject = JSON.parse(data);
     res.send(myObject);
@@ -43,9 +48,10 @@ app.post('/api/idee', urlencodedParser, (req, res) => {
         // error checking
         if (err) throw err;
     });
-    
+
 
     res.status(204).send();
 });
 
 app.listen(3000);
+console.log('Server is listening on port 3000');
