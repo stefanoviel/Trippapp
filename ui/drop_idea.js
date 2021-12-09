@@ -21,15 +21,11 @@ request.onload = function () {
 
     if (request.status >= 200 && request.status < 400) {
         data.idee.forEach(idea => {
-            console.log(idea);
-            const card = document.createElement('div');
-            card.setAttribute('class', 'card');
 
-            const h1 = document.createElement('h1');
-            h1.textContent = idea.partenza + " " + idea.destinazione;
-
-            container.appendChild(card);
-            card.appendChild(h1);
+            var node = document.createElement("li");                 // Create a <li> node
+            // var textnode = document.createTextNode(idea.partenza);         // Create a text node
+            node.innerHTML = idea.partenza;                              // Append the text to <li>
+            document.getElementById("drop-menu3").appendChild(node); 
 
         });
     } else {
