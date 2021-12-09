@@ -2,11 +2,8 @@ const app = document.getElementById('root');
 const container = document.createElement('div');
 container.setAttribute('class', 'container');
 
-
-
 var t = document.createElement("card");
 app.appendChild(container);
-
 
 
 // Begin accessing JSON data here
