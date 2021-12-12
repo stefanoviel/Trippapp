@@ -23,7 +23,7 @@ app.get('/api/idee', (req, res) => {
     res.send(myObject);
 });
 
-app.post('/api/idee', urlencodedParser, (req, res) => {
+app.post('/api/idee',  (req, res) => {
     console.log('Got body:', req.body);
     // memorize the data in the local json
     //  res.sendStatus(200);
@@ -36,7 +36,7 @@ app.post('/api/idee', urlencodedParser, (req, res) => {
     // creazione nuovo elemento 
     let newIdea = {
         "partenza": req.body['partenza'],
-        "destinazione": req.body['destinazione'],
+        "destinazione": req.body['destinazione']
     };
 
     //aggiunta nuovo elemento
@@ -49,7 +49,12 @@ app.post('/api/idee', urlencodedParser, (req, res) => {
         if (err) throw err;
     });
 
+    console.log(appDir);
 
+    
+    // let newStr = appDir.replace('api','ui');
+    // console.log(newStr)
+    // res.sendFile(path.join(newStr, '/idee_viaggio.html'));
     res.status(204).send();
 });
 
@@ -61,8 +66,8 @@ app.get('/api/gruppi', (req, res) => {
     res.send(myObject);
 });
 
-app.post('/api/gruppi', urlencodedParser, (req, res) => {
-    console.log('Got body:', req.body);
+app.post('/api/gruppi',  (req, res) => {
+    console.log('Got body:', req);
     // memorize the data in the local json
     //  res.sendStatus(200);
 
