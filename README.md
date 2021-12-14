@@ -1,2 +1,1 @@
-Questo è un bellissimo readme di esempio, molto professionale
-Essendo presente in ogni progetto, ho pensato di inserirne uno
+Per eseguire il progetto è sufficiente portarsi nella cartella api ed eseguire il comando npm start questo farà partire il server. Per eseguire la parte di front-end è sufficiente aprire il file index.html.

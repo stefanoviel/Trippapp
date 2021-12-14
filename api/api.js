@@ -64,30 +64,21 @@ app.get('/api/gruppi', (req, res) => {
 
 app.post('/api/gruppi', urlencodedParser, (req, res) => {
     console.log('Got body:', req.body);
-    // memorize the data in the local json
-    //  res.sendStatus(200);
 
-    // lettura file json e estrazione dati
     var data = fs.readFileSync(appDir + '/gruppi.json');
     var myObject = JSON.parse(data);
 
-
-    // creazione nuovo elemento 
     let newGruppo = {
         "partenza": req.body['partenza'],
         "destinazione": req.body['destinazione'],
     };
 
-    //aggiunta nuovo elemento
     myObject.gruppi.push(newGruppo);
 
-    //aggiornamento file json con il nuovo elemento
     var newData = JSON.stringify(myObject);
     fs.writeFile(appDir + '/gruppi.json', newData, err => {
-        // error checking
         if (err) throw err;
     });
-
 
     res.status(200).send();
 });
