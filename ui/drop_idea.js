@@ -1,5 +1,6 @@
 const app = document.getElementById('root');
 const container = document.createElement('div');
+
 container.setAttribute('class', 'container');
 
 var t = document.createElement("card");
@@ -9,13 +10,14 @@ app.appendChild(container);
 
 var request = new XMLHttpRequest();
 request.open('GET', 'http://localhost:3000/api/idee', true);
+
 request.onload = function () {
 
     // Begin accessing JSON data here
     var data = JSON.parse(this.response);
 
     if (request.status >= 200 && request.status < 400) {
-        i = 0; 
+        
         data.idee.forEach(idea => {
             
             var node = document.createElement("li");                 // Create a <li> node
@@ -23,14 +25,14 @@ request.onload = function () {
             node.innerHTML = idea.partenza;                              // Append the text to <li>
             
             node.addEventListener("click", function(){ 
-                request.open("POST",  'http://localhost:3000/api/gruppi');
-                request.setRequestHeader("Content-Type", "application/json");
-                request.send('data='+JSON.stringify({"partenza":idea.partenza, "destinazione":idea.destinazione}));
-                alert(idea.partenza);
-
+                var request1 = new XMLHttpRequest();
+                request1.open("POST",  'http://localhost:3000/api/gruppi');
+                request1.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                request1.send(JSON.stringify({"partenza":idea.partenza,"destinazione":idea.destinazione}));
              }); 
+
             document.getElementById("drop-menu3").appendChild(node); 
-            i++; 
+            
         });
     } else {
         const errorMessage = document.createElement('marquee');
@@ -38,5 +40,7 @@ request.onload = function () {
         app.appendChild(errorMessage);
     }
 }
+
 request.send();
  
+

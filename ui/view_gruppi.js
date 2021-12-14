@@ -6,20 +6,20 @@ var t = document.createElement("card");
 app.appendChild(container);
 
 var request = new XMLHttpRequest();
-request.open('GET', 'http://localhost:3000/api/idee', true);
+request.open('GET', 'http://localhost:3000/api/gruppi', true);
 request.onload = function () {
 
     // Begin accessing JSON data here
     var data = JSON.parse(this.response);
 
     if (request.status >= 200 && request.status < 400) {
-        data.idee.forEach(idea => {
-            console.log(idea);
+        data.gruppi.forEach(gruppo => {
+            console.log(gruppo);
             const card = document.createElement('div');
             card.setAttribute('class', 'card');
 
             const h1 = document.createElement('h1');
-            h1.textContent = idea.partenza + " " + idea.destinazione;
+            h1.textContent = gruppo.partenza + " " + gruppo.destinazione;
 
             container.appendChild(card);
             card.appendChild(h1);
