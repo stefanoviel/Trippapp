@@ -3,7 +3,8 @@ var bodyParser = require("body-parser");
 
 var app = Express();
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+
 
 var MongoClient = require("mongodb").MongoClient;
 const { request, response } = require("express");
@@ -93,20 +94,20 @@ app.post('/api/idee', (request, response) => {
                 durataMax:request.body['durataMax']
             },
             attivita: {
-                crociera: req.body['crociera'] != undefined,
-                escursioni: req.body['escursioni'] != undefined,
-                eventi: req.body['eventi'] != undefined,
-                montagna: req.body['montagna'] != undefined,
-                moda_shopping: req.body['moda_shopping'] != undefined,
-                movida: req.body['movida'] != undefined,
-                musei: req.body['musei'] != undefined,
-                parco_avventura: req.body['parco_avventura'] != undefined,
-                parco_natura: req.body['parco_natura'] != undefined,
-                pellegrinaggio: req.body['pellegrinaggio'] != undefined,
-                mare: req.body['mare'] != undefined,
-                sport: req.body['sport'] != undefined,
-                tour_enogastronomici: req.body['tour_enogastronomici'] != undefined,
-                sorprese: req.body['sorprese'] != undefined 
+                crociera: request.body['crociera'] != undefined,
+                escursioni: request.body['escursioni'] != undefined,
+                eventi: request.body['eventi'] != undefined,
+                montagna: request.body['montagna'] != undefined,
+                moda_shopping: request.body['moda_shopping'] != undefined,
+                movida: request.body['movida'] != undefined,
+                musei: request.body['musei'] != undefined,
+                parco_avventura: request.body['parco_avventura'] != undefined,
+                parco_natura: request.body['parco_natura'] != undefined,
+                pellegrinaggio: request.body['pellegrinaggio'] != undefined,
+                mare: request.body['mare'] != undefined,
+                sport: request.body['sport'] != undefined,
+                tour_enogastronomici: request.body['tour_enogastronomici'] != undefined,
+                sorprese: request.body['sorprese'] != undefined 
             }
         });
 

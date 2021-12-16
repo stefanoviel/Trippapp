@@ -20,7 +20,7 @@ request.onload = function () {
             card.setAttribute('class', 'card');
 
             const h1 = document.createElement('h1');
-            h1.textContent = idea.partenza;
+            h1.textContent = idea.titolo;
             const descrizione = document.createElement('p'); 
             descrizione.innerHTML = "<b>Descrizione</b> : " + idea.descrizione; 
             const bottone = document.createElement('button'); 
@@ -34,10 +34,12 @@ request.onload = function () {
             cestino.innerHTML = "&#xf014";
 
             bottone.addEventListener("click", function(){ 
+              
                 var request2 = new XMLHttpRequest();
-                request2.open("DELETE",  'http://localhost:3000/api/idee/:id' );
-                console.log("deleted" + JSON.stringify(idea)); 
-                request2.send(JSON.stringify(data));
+                console.log(idea.id); 
+                request2.open("DELETE",  'http://localhost:3000/api/idee/' + idea.IdeaID );
+                console.log("deleted" + idea.id);
+                request2.send();
              });
 
             bottone.appendChild(cestino) ; 
