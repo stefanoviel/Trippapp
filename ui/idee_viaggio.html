@@ -16,6 +16,7 @@
   </script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
   </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -52,11 +53,24 @@
 
     <div class="collapse " id="collapseExample">
       <div class="container">
-        <form action="http://localhost:3000/api/idee" method="POST">
+        <form action="http://localhost:3000/api/idee" method="POST" onsubmit="setTimeout(function(){window.location.reload();},10);">
+
+          <div class="form-group">
+            <label for="titolo" class="form-label">Titolo</label>
+            <input class="form-control" id="titolo" placeholder=" Parigi" name="titolo">
+          </div>
+
+          <div class="form-group">
+            <label for="descrizione" class="form-label">Descrizione</label>
+            <input type="textarea" class="form-control" id="descrizione" placeholder=" Parigi" name="descrizione">
+          </div>
+
+          <hr>
+
           <div class="form-group">
             <label for="partenza" class="form-label">Partenza</label>
 
-            <input class="form-control" id="partenza" placeholder=" Milano"  name="partenza">
+            <input class="form-control" id="partenza" placeholder=" Milano" , name="partenza">
           </div>
 
           <div class="form-group">
@@ -64,42 +78,303 @@
             <input class="form-control" id="destinazione" placeholder=" Parigi" name="destinazione">
           </div>
 
-          <button type="submit" class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#collapseExample">
-            Submit
-          </button>
-
-
+          <hr>
           
+
+          <!-- Budget Range -->
+
+          <div class="mt-4">
+            <p>Budget</p>
+          </div>
+
+          <div class="input-group-prepend">
+            <label for="budgetMin" class="form-label mr-sm-2">Min: </label>
+            <input type="number" min="0" class="form-control mr-sm-2" id="budgetMin" placeholder="0" name="budgetMin">
+            <label for="budgetMax" class="form-label mr-sm-2">Max: </label>
+            <input type="number" min="0" class="form-control mr-sm-2" id="budgetMin" placeholder="1000" name="budgetMax">
+          </div>
+
+          <hr>
+
+
+          <!-- Numerosita Range -->
+
+          <div class="mt-4">
+            <p>Numerosità</p>
+          </div>
+
+          <div class="input-group-prepend">
+            <label for="partecipantiMin" class="form-label mr-sm-2">Min: </label>
+            <input type="number" min="0" max="100" class="form-control mr-sm-2" id="partecipantiMin" placeholder="0" name="partecipantiMin">
+            <label for="partecipantiMax" class="form-label mr-sm-2">Max: </label>
+            <input type="number" min="0" max="100" class="form-control mr-sm-2" id="partecipantiMax" placeholder="100" name="partecipantiMax">
+          </div>
+
+          <hr>
+
+          <!-- Eta Range -->
+
+          <div class="mt-4">
+            <p>Età</p>
+          </div>
+
+          <div class="input-group-prepend">
+            <label for="etaMin" class="form-label mr-sm-2">Min: </label>
+            <input type="number" min="18" max="120" class="form-control mr-sm-2" id="etaMin" placeholder="18" name="etaMin">
+            <label for="etaMax" class="form-label mr-sm-2">Max: </label>
+            <input type="number" min="18" max="120" class="form-control mr-sm-2" id="etaMax" placeholder="120" name="etaMax">
+          </div>
+
+          <hr>
+
+          <!-- Durata Range -->
+
+          <div class="mt-4">
+            <p>Durata</p>
+          </div>
+
+          <div class="input-group-prepend">
+            <label for="durataMin" class="form-label mr-sm-2">Min: </label>
+            <input type="number" min="1" max="90" class="form-control mr-sm-2" id="durataMin" placeholder="1" name="durataMin">
+            <label for="durataMax" class="form-label mr-sm-2">Max: </label>
+            <input type="number" min="1" max="90" class="form-control mr-sm-2" id="durataMax" placeholder="90" name="durataMax">
+          </div>
+
+          <hr>
+
+          <!-- Alloggi -->
+
             <div class="mt-4">
                 <p>Alloggio</p>
             </div>
-            
-            
+          
              <div class="form-check mt-1">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
+                <input class="form-check-input" type="checkbox" value="" id="affittacamere">
+                <label class="form-check-label" for="affittacamere">
                   Affittacamere
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-                <label class="form-check-label" for="flexCheckChecked">
+                <input class="form-check-input" type="checkbox" value="" id="agriturismo" >
+                <label class="form-check-label" for="agriturismo">
                   Agriturismo
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-                <label class="form-check-label" for="flexCheckChecked">
+                <input class="form-check-input" type="checkbox" value="" id="appartamenti" >
+                <label class="form-check-label" for="appartamenti">
                   Appartamenti
                 </label>
               </div>
               <div class="form-check">  
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-                <label class="form-check-label" for="flexCheckChecked">
+                <input class="form-check-input" type="checkbox" value="" id="bnb" >
+                <label class="form-check-label" for="bnb">
                   B&B
                 </label>
-              </div> 
+              </div>
+              <div class="form-check mt-1">
+                <input class="form-check-input" type="checkbox" value="" id="baite">
+                <label class="form-check-label" for="baite">
+                  Baite
+                </label>
+              </div>
+              <div class="form-check mt-1">
+                <input class="form-check-input" type="checkbox" value="" id="campeggi">
+                <label class="form-check-label" for="campeggi">
+                  Campeggi
+                </label>
+              </div>
+              <div class="form-check mt-1">
+                <input class="form-check-input" type="checkbox" value="" id="case_vacanze">
+                <label class="form-check-label" for="case_vacanze">
+                  Case Vacanze
+                </label>
+              </div>
+              <div class="form-check mt-1">
+                <input class="form-check-input" type="checkbox" value="" id="hotel">
+                <label class="form-check-label" for="hotel">
+                  Hotel
+                </label>
+              </div>
+              <div class="form-check mt-1">
+                <input class="form-check-input" type="checkbox" value="" id="motel">
+                <label class="form-check-label" for="motel">
+                  Motel
+                </label>
+              </div>
+              <div class="form-check mt-1">
+                <input class="form-check-input" type="checkbox" value="" id="ostelli">
+                <label class="form-check-label" for="ostelli">
+                  Ostelli
+                </label>
+              </div>
+              <div class="form-check mt-1">
+                <input class="form-check-input" type="checkbox" value="" id="pensioni">
+                <label class="form-check-label" for="pensioni">
+                  Pensioni
+                </label>
+              </div>
+              <div class="form-check mt-1">
+                <input class="form-check-input" type="checkbox" value="" id="residence">
+                <label class="form-check-label" for="residence">
+                  Residence
+                </label>
+              </div>
+              <div class="form-check mt-1">
+                <input class="form-check-input" type="checkbox" value="" id="resort">
+                <label class="form-check-label" for="resort">
+                  Resort
+                </label>
+              </div>
+              <div class="form-check mt-1">
+                <input class="form-check-input" type="checkbox" value="" id="safari">
+                <label class="form-check-label" for="safari">
+                  Safari/tende arredate
+                </label>
+              </div>
 
+              <hr>
+
+              <!-- Mezzi -->
+              <div class="mt-4">
+                <p>Mezzi di trasporto</p>
+              </div>
+
+             <div class="form-check mt-1">
+              <input class="form-check-input" type="checkbox" value="" id="aereo">
+              <label class="form-check-label" for="aereo">
+                Aereo
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="autoCheck" >
+              <label class="form-check-label" for="autoCheck">
+                Auto
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="autobusCheck" >
+              <label class="form-check-label" for="autobusCheck">
+                Autobus
+              </label>
+            </div>
+            <div class="form-check">  
+              <input class="form-check-input" type="checkbox" value="" id="naveCheck" >
+              <label class="form-check-label" for="naveCheck">
+                Nave
+              </label>
+            </div>
+            <div class="form-check mt-1">
+              <input class="form-check-input" type="checkbox" value="" id="traghettoCheck">
+              <label class="form-check-label" for="traghettoCheck">
+                Traghetto
+              </label>
+            </div>
+            <div class="form-check mt-1">
+              <input class="form-check-input" type="checkbox" value="" id="trenoCheck">
+              <label class="form-check-label" for="trenoCheck">
+                Treno
+              </label>
+            </div>
+
+            <hr>
+
+            <!-- Attivita -->
+
+            <div class="mt-4">
+              <p>Attività</p>
+          </div>
+        
+           <div class="form-check mt-1">
+              <input class="form-check-input" type="checkbox" value="" id="crociera">
+              <label class="form-check-label" for="crociera">
+                Crociera
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="escursioni" >
+              <label class="form-check-label" for="escursioni">
+                Escursioni
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="eventi" >
+              <label class="form-check-label" for="eventi">
+                Eventi
+              </label>
+            </div>
+            <div class="form-check">  
+              <input class="form-check-input" type="checkbox" value="" id="montagna" >
+              <label class="form-check-label" for="montagna">
+                Gita in montagna
+              </label>
+            </div>
+            <div class="form-check mt-1">
+              <input class="form-check-input" type="checkbox" value="" id="moda_shopping">
+              <label class="form-check-label" for="moda_shopping">
+                Moda e shopping
+              </label>
+            </div>
+            <div class="form-check mt-1">
+              <input class="form-check-input" type="checkbox" value="" id="movida">
+              <label class="form-check-label" for="movida">
+                Movida notturna
+              </label>
+            </div>
+            <div class="form-check mt-1">
+              <input class="form-check-input" type="checkbox" value="" id="musei">
+              <label class="form-check-label" for="musei">
+                Musei d’arte/tour culturali
+              </label>
+            </div>
+            <div class="form-check mt-1">
+              <input class="form-check-input" type="checkbox" value="" id="parco_avventura">
+              <label class="form-check-label" for="parco_avventura">
+                Parco avventura
+              </label>
+            </div>
+            <div class="form-check mt-1">
+              <input class="form-check-input" type="checkbox" value="" id="parco_natura">
+              <label class="form-check-label" for="parco_natura">
+                Parco natura
+              </label>
+            </div>
+            <div class="form-check mt-1">
+              <input class="form-check-input" type="checkbox" value="" id="pellegrinaggio">
+              <label class="form-check-label" for="pellegrinaggio">
+                Pellegrinaggio
+              </label>
+            </div>
+            <div class="form-check mt-1">
+              <input class="form-check-input" type="checkbox" value="" id="mare">
+              <label class="form-check-label" for="mare">
+                Relax al mare
+              </label>
+            </div>
+            <div class="form-check mt-1">
+              <input class="form-check-input" type="checkbox" value="" id="sport">
+              <label class="form-check-label" for="sport">
+                Sport
+              </label>
+            </div>
+            <div class="form-check mt-1">
+              <input class="form-check-input" type="checkbox" value="" id="tour_enogastronomici">
+              <label class="form-check-label" for="tour_enogastronomici">
+                Tour enogastronomici
+              </label>
+            </div>
+            <div class="form-check mt-1">
+              <input class="form-check-input" type="checkbox" value="" id="sorprese">
+              <label class="form-check-label" for="sorprese">
+                Mi piacciono le sorprese
+              </label>
+            </div>
+            
+            <hr>
+
+              <button type="submit" class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#collapseExample">
+                Submit
+              </button>
 
 
 
@@ -107,46 +382,9 @@
       </div>
     </div>
   </div>
-
+  
   <script src="view_ideas.js"></script>
   
-  <!--<script>
-    // var tag = document.createElement("p");
-    // var text = document.createTextNode("paragraph");
-    // tag.appendChild(text);
-    // var element = document.getElementById("new");
-    // element.appendChild(tag);
-    const app = document.getElementById('root');
-    const container = document.createElement('div');
-    container.setAttribute('class', 'container');
-    var t = document.createElement("card");
-    app.appendChild(container);
-    // Begin accessing JSON data here
-    var request = new XMLHttpRequest();
-    request.open('GET', 'http://localhost:3000/api/idee', true);
-    request.onload = function () {
-      // Begin accessing JSON data here
-      var data = JSON.parse(this.response);
-      if (request.status >= 200 && request.status < 400) {
-        data.idee.forEach(idea => {
-          console.log(idea);
-          const card = document.createElement('div');
-          card.setAttribute('class', 'card');
-          const h1 = document.createElement('h1');
-          h1.textContent = idea.partenza + " " + idea.destinazione;
-          container.appendChild(card);
-          card.appendChild(h1);
-        });
-      } else {
-        const errorMessage = document.createElement('marquee');
-        errorMessage.textContent = `THE API IS NOT WORKING!`;
-        app.appendChild(errorMessage);
-      }
-    }
-    request.send();
-  </script>
--->
-
 
 </body>
 
