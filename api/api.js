@@ -3,19 +3,13 @@ var bodyParser = require("body-parser");
 
 var app = Express();
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 var MongoClient = require("mongodb").MongoClient;
 const { request, response } = require("express");
 var CONNECTION_STRING = "mongodb+srv://G14:G14pass@cluster0.ab488.mongodb.net/api"
 
-
-
-var fileUpload = require('express-fileupload');
-var fs = require('fs');
-app.use(fileUpload());
-app.use('/Photos', Express.static(__dirname + '/Photos'));
 
 
 var cors = require('cors')
@@ -65,20 +59,20 @@ app.post('/api/idee', (request, response) => {
                 max:request.body['budgetMax'], 
                 valuta:"€"},
             alloggio: {
-                affittacamere: request.body['affittacamere'],
-                agriturismo: request.body['agriturismo'],
-                appartamenti: request.body['appartamenti'],
-                bnb: request.body['bnb'],
-                baite: request.body['baite'],
-                campeggi: request.body['campeggi'],
-                case_vacanze: request.body['case_vacanze'],
-                hotel: request.body['hotel'],
-                motel: request.body['motel'],
-                ostelli: request.body['ostelli'],
-                pensioni: request.body['pensioni'],
-                residence: request.body['residence'],
-                resort: request.body['resort'],
-                safari: request.body['safari']
+                affittacamere: !(request.body['affittacamere'] === undefined),
+                agriturismo: request.body['agriturismo']  !== undefined,
+                appartamenti: request.body['appartamenti'] !== undefined,
+                bnb: request.body['bnb'] != undefined,
+                baite: request.body['baite'] != undefined,
+                campeggi: request.body['campeggi'] != undefined,
+                case_vacanze: request.body['case_vacanze'] != undefined,
+                hotel: request.body['hotel'] != undefined,
+                motel: request.body['motel'] != undefined,
+                ostelli: request.body['ostelli'] != undefined,
+                pensioni: request.body['pensioni'] != undefined,
+                residence: request.body['residence'] != undefined,
+                resort: request.body['resort'] != undefined,
+                safari: request.body['safari'] != undefined
             },
             personeRange:{
                 min: request.body['partecipantiMin'], 
@@ -118,15 +112,14 @@ app.post('/api/idee', (request, response) => {
 
 app.delete('/api/idee/:id', (request, response) => {
     console.log("DELETE GRUPPI API CALLED"); 
-    console.log(request.body.id); 
+    console.log(request.params.id ); 
 
     database.collection("ideas").deleteOne({
-        DepartmentId: parseInt(request.body.id)
+        IdeaID: parseInt(request.params.id)
     });
 
-    response.json("Deleted Successfully");
+    response.status(204).send();
 }); 
-
 
 app.get('/api/gruppi', (request, response) => {
     console.log("GET GRUPPI API CALLED");
@@ -139,7 +132,10 @@ app.get('/api/gruppi', (request, response) => {
 
 }); 
 
+gruppiId = 0;
+
 app.post('/api/gruppi', (request, response) => {
+    
     console.log("POST GRUPPI API CALLED");
     database.collection("gruppi").count({}, function (error, numOfDocs) {
         if (error) {
@@ -147,11 +143,14 @@ app.post('/api/gruppi', (request, response) => {
         }
 
         database.collection("gruppi").insertOne({
-            IdeaID: ideaId + 1,
+            GruppiID: gruppiId + 1,
             titolo: request.body['titolo'],
             descrizione: request.body['descrizione'],
-            partenza: request.body['partenza'],
-            destinazione: request.body['destinazione'],
+            Idea_gruppo: request.body,
+            amministratore: {},
+            richiedenti: {},
+            espulsi: {},
+            chiuso : false
             
         });
 
@@ -159,89 +158,3 @@ app.post('/api/gruppi', (request, response) => {
     })
 
 }); 
-
-
-
-
-
-
-// app.get('/api/employee', (request, response) => {
-
-//     database.collection("Employee").find({}).toArray((error, result) => {
-//         if (error) {
-//             console.log(error);
-//         }
-
-//         response.send(result);
-//     })
-
-// })
-
-// app.post('/api/employee', (request, response) => {
-
-//     database.collection("Employee").count({}, function (error, numOfDocs) {
-//         if (error) {
-//             console.log(error);
-//         }
-
-//         database.collection("Employee").insertOne({
-//             EmployeeId: numOfDocs + 1,
-//             EmployeeName: request.body['EmployeeName'],
-//             Department: request.body['Department'],
-//             DateOfJoining: request.body['DateOfJoining'],
-//             PhotoFileName: request.body['PhotoFileName'],
-//         });
-
-//         response.json("Added Successfully");
-//     })
-
-// })
-
-
-// app.put('/api/employee', (request, response) => {
-
-//     database.collection("Employee").updateOne(
-//         //Filter Criteria
-//         {
-//             "EmployeeId": request.body['EmployeeId']
-//         },
-//         //Update
-//         {
-//             $set:
-//             {
-//                 EmployeeName: request.body['EmployeeName'],
-//                 Department: request.body['Department'],
-//                 DateOfJoining: request.body['DateOfJoining'],
-//                 PhotoFileName: request.body['PhotoFileName'],
-//             }
-
-//         }
-//     );
-
-//     response.json("Updated Successfully");
-// })
-
-
-
-// app.delete('/api/employee/:id', (request, response) => {
-
-//     database.collection("Employee").deleteOne({
-//         EmployeeId: parseInt(request.params.id)
-//     });
-
-//     response.json("Deleted Successfully");
-// })
-
-
-// app.post('/api/employee/savefile', (request, response) => {
-
-//     fs.writeFile("./Photos/" + request.files.file.name,
-//         request.files.file.data, function (err) {
-//             if (err) {
-//                 console.log(err);
-//             }
-
-//             response.json(request.files.file.name);
-//         }
-//     )
-// })
