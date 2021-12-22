@@ -28,17 +28,16 @@ test('POST /api/idee', function (assert) {
             "durataViaggio":{"durataMin":"10","durataMax":"15"},
             "attivita":{"crociera":false,"escursioni":false,"eventi":false,"montagna":false,"moda_shopping":true,"movida":false,"musei":false,"parco_avventura":true,"parco_natura":false,"pellegrinaggio":true,"mare":false,"sport":true,"tour_enogastronomici":false,"sorprese":true}
         })
-        .expect(200)
+        .expect(204)
         .end(function (err, res) {
             assert.error(err, 'No error');
-            assert.isEqual("New idea added successfully", res.body, 'The POST response delivers a good body');
             assert.end();
         });
 });
 
 test('DELETE /api/idee', function (assert) {
     request(app)
-        .del('/api/idee/0')
+        .del('/api/idee/000000000000')
         .expect(200)
         .end(function (err, res) {
             if (err) {
@@ -50,3 +49,5 @@ test('DELETE /api/idee', function (assert) {
             assert.end();
         });
 });
+
+console.log("Server will remain on, kill it if needed")

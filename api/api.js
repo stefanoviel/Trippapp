@@ -30,9 +30,10 @@ const swaggerOptions = {
             },
         ],
     },
-    apis: ["api/api.js"]
+    apis: [__filename]
 };
 
+console.log(__filename);
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
@@ -41,7 +42,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 var MongoClient = require("mongodb").MongoClient;
-const { request, response } = require("express");
+var ObjectId = require("mongodb").ObjectId;
 var CONNECTION_STRING = "mongodb+srv://Latios:latiospass@cluster0.ab488.mongodb.net/api"
 
 
@@ -620,7 +621,7 @@ app.post('/api/idee', (request, response) => {
                 }
             });
 
-            response.json("New idea added successfully");
+            response.status(204).send();
         })
     })
 }); 
@@ -634,14 +635,14 @@ app.post('/api/idee', (request, response) => {
  *       - in: path
  *         name: id
  *         schema:
- *             type: int
+ *             type: string
  *         required: true
  *         description: l'id dell idea
  *     responses:
  *       200:
  *         description: l'idea è stata eliminata
  *       404:
- *         description: l'dea non è stata trovata
+ *         description: l'idea non è stata trovata
 */
 
 app.delete('/api/idee/:id', (request, response) => {
@@ -651,10 +652,10 @@ app.delete('/api/idee/:id', (request, response) => {
             console.log("Mongo DB Connection Successful");
             firstConnection = false;
         }
-        console.log("DELETE GRUPPI API CALLED");
-
+        console.log("DELETE IDEE API CALLED");
+        console.log(request.params.id);
         database.collection("ideas").deleteOne({
-            IdeaID: parseInt(request.params.id)
+            _id: ObjectId(request.params.id)
         });
 
         response.json("Idea deleted successfully");

@@ -36,9 +36,8 @@ request.onload = function () {
             bottone.addEventListener("click", function(){ 
               
                 var request2 = new XMLHttpRequest();
-                console.log(idea.id); 
-                request2.open("DELETE",  'http://localhost:3000/api/idee/' + idea.IdeaID );
-                console.log("deleted" + idea.id);
+                console.log(idea._id); 
+                request2.open("DELETE",  'http://localhost:3000/api/idee/' + idea._id );
                 request2.send();
              });
 
