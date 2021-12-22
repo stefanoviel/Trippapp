@@ -44,6 +44,8 @@ var MongoClient = require("mongodb").MongoClient;
 const { request, response } = require("express");
 var CONNECTION_STRING = "mongodb+srv://Latios:latiospass@cluster0.ab488.mongodb.net/api"
 
+
+
 var cors = require('cors')
 app.use(cors())
 
@@ -52,13 +54,22 @@ var DATABASE = "api";
 var database;
 var firstConnection = true;
 
+app.listen(3000, () => {
+
+    MongoClient.connect(CONNECTION_STRING, { useNewUrlParser: true }, (error, client) => {
+        database = client.db(DATABASE);
+        console.log("Mongo DB Connection Successfull");
+    })
+
+});
+
 
 /**
  * @swagger
  * /api/idee:
  *   get:
  *     summary: Recupera una lista idee.
- *     description: Recupera una lista di idee dal dal server remoto (MongoDB).
+ *     description: Recupera una lista di idee dal dal server remoto (MonogDB).
  *     responses:
  *       200:
  *         description: Una lista di idee.
@@ -1220,6 +1231,7 @@ app.post('/api/gruppi', (request, response) => {
             firstConnection = false;
         }
         console.log("POST GRUPPI API CALLED");
+        console.log(request.body); 
         database.collection("gruppi").count({}, function (error, numOfDocs) {
             if (error) {
                 console.log(error);
@@ -1229,6 +1241,8 @@ app.post('/api/gruppi', (request, response) => {
                 GruppiID: gruppiId + 1,
                 titolo: request.body['titolo'],
                 descrizione: request.body['descrizione'],
+                partenza : request.body['partenza'],
+                destinazione : request.body['destinazione'],
                 Idea_gruppo: request.body,
                 amministratore: {},
                 richiedenti: {},

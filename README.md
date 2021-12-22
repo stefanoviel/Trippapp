@@ -1,2 +1,1 @@
-Per eseguire il progetto è sufficiente eseguire il comando npm start nella cartella radice del progetto (il comando andrà ad eseguire server.js). Questo avvierà un server in ascolto alla porta 3000. Per eseguire la parte di front-end è sufficiente aprire il file index.html.
-Per il testing, invece, eseguire il comando npm test, o eseguire il file "test/test.js".
+Per eseguire il progetto è sufficiente portarsi nella cartella api ed eseguire il comando npm start questo farà partire il server. Per eseguire la parte di front-end è sufficiente aprire il file index.html.

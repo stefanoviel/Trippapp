@@ -30,15 +30,15 @@ request.onload = function () {
             node.addEventListener("click", function(){ 
                 var request1 = new XMLHttpRequest();
                 request1.open("POST",  'http://localhost:3000/api/gruppi');
-                request1.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                request1.send(JSON.stringify({"partenza":idea.partenza,"destinazione":idea.destinazione}));
+                request1.setRequestHeader("Content-Type", "application/json");
+                alert("ciaso")
+                request1.send(JSON.stringify(idea));
+                
              }); 
 
             
 
-            node.onclick = function(){
-                location.reload(true);
-                }
+            
                 document.getElementById("drop-menu3").append(node); 
             
             
