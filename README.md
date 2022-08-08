@@ -1,2 +1,6 @@
-Per eseguire il progetto è sufficiente eseguire il comando npm start o avviare api/api.js. Questo farà partire il server. Per eseguire la parte di front-end è sufficiente aprire il file ui/index.html.
-Per il testing, invece, digitare il comando npm test oppure avviare test/test.js.
+#Trippapp
+
+First year software engineering project at UNITN.
+
+To run the project just run the npm start command or start api / api.js. This will start the server. To run the front-end part just open the ui / index.html file.
+For testing, instead, type the command npm test or use test / test.js.
